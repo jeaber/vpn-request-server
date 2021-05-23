@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"target": "es6",
+		"noImplicitAny": false,
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"outDir": "dist",
+		"baseUrl": ".",
+		"allowJs": true,
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"rootDir": ".",
+		"paths": {
+			"~/*": [
+				"dist/src/*",
+				"dist/*",
+				"*"
+			],
+			"*": [
+				"./node_modules/@types/*",
+				"*",
+				"src/types/*"
+			],
+		},
+		"types": [
+			"node"
+		]
+	},
+	"include": [
+		"src/*"
+	],
+}

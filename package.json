@@ -1,0 +1,23 @@
+{
+	"name": "requestvpn",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"watch-ts": "tsc -w",
+		"start": "node dist/src/index.js --max-old-space-size=8192"
+	},
+	"author": "jeaber",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.21.1",
+		"circular-json": "^0.5.9",
+		"compression": "^1.7.4",
+		"express": "^4.17.1",
+		"http": "*"
+	},
+	"devDependencies": {
+		"@types/node": "^15.6.0"
+	}
+}
