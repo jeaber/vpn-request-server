@@ -7,7 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"watch-ts": "tsc -w",
 		"compile": "tsc",
-		"start": "node dist/src/index.js --max-old-space-size=8192"
+		"start": "node dist/src/index.js"
 	},
 	"author": "jeaber",
 	"license": "ISC",
