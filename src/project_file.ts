@@ -11,9 +11,9 @@ const vpnData = VPNS.map(ip => {
 interval(5000).subscribe(() => {
 	vpnData.forEach((host) => {
 		ping.sys.probe(host.ip, (isAlive) => {
-			var msg = isAlive ? 'host ' + host.ip + ' is alive' : 'host ' + host.ip + ' is dead';
+			// var msg = isAlive ? 'host ' + host.ip + ' is alive' : 'host ' + host.ip + ' is dead';
 			host.alive = isAlive;
-			console.log(msg);
+			// console.log(msg);
 		});
 	});
 });
