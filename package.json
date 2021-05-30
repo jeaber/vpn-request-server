@@ -15,7 +15,9 @@
 		"circular-json": "^0.5.9",
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
-		"http": "*"
+		"http": "*",
+		"ping": "^0.4.1",
+		"rxjs": "^7.1.0"
 	},
 	"devDependencies": {
 		"@types/node": "^15.6.0"
