@@ -20,11 +20,12 @@ app.use(express.json());
 app.post('/vpnrequest', async (req, res) => {
 	if (req.body) {
 		let config: AxiosRequestConfig;
-		if (typeof req.body.config === 'string') {
+		try {
 			config = JSON.parse(req.body.config);
-		} else {
+		} catch (e) {
 			config = req.body.config;
 		}
+
 		let response;
 		let error;
 		await Axios(config)
