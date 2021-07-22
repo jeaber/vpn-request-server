@@ -1,4 +1,7 @@
+require('dotenv').config();
 import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { interval, startWith } from "rxjs";
+var exec = require('child_process').exec;
 
 const express = require('express'),
 	app = express(),
@@ -18,10 +21,13 @@ app.use(
 app.use(express.json());
 
 app.post('/vpnrequest', async (req, res) => {
-	if (req.body) {
+	if (req.body && req.body.config) {
 		let config: AxiosRequestConfig;
 		try {
-			config = JSON.parse(req.body.config);
+			if (typeof req.body.config === 'string')
+				config = JSON.parse(req.body.config);
+			else
+				config = req.body.config;
 		} catch (e) {
 			config = req.body.config;
 		}
@@ -70,3 +76,26 @@ app.post('/vpnrequest', async (req, res) => {
 server.listen(config.port, () => {
 	console.log("Express server listening on port %d", config.port);
 });
+
+
+interval(60000)
+	//	.pipe(startWith(0))
+	.subscribe(async () => {
+		await Axios('http://ifconfig.me')
+			.then(r => {
+				if (!r || !r.data || r.data.indexOf(`${process.env.wanip}`) === 0) {
+					reboot(function (output) {
+						console.log(output);
+					});
+				}
+			})
+			.catch((e: Error) => {
+				reboot(function (output) {
+					console.log(output);
+				});
+			});
+	});
+function reboot(callback) {
+	exec(`echo '${process.env.sudopass}' | sudo -S /sbin/shutdown -r now`, function (error, stdout, stderr) { callback(`${error}, ${stdout}, ${stderr}`); });
+}
+
